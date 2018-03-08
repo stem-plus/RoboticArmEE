@@ -1,7 +1,7 @@
 {
-    "name": "MP3",
+    "name": "ServoDriver",
     "version": "0.1.0",
-    "description": "Package for Catalex serial MP3 module developed by Jack Ho",
+    "description": "Package for Servo controlling modukle",
     "license": "MIT",
     "dependencies": {
         "core": "*"
