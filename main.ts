@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Jack Ho, Parco Choi, Sang Lo (MCEHK)
+Copyright 2018 Jack Ho
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
 associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -45,9 +45,8 @@ enum MyEnum {
 namespace MP3 {
     /**
      * TODO: describe your function here
-     * @param n describe parameter here, eg: 5
-     * @param s describe parameter here, eg: "Hello"
-     * @param e describe parameter here
+     * @param RX connects to RX pin of the module
+     * @param TX connects to TX pin of the module
      */
        //% blockId=mp3_init block="Initialise MP3 module |RX: %RX| TX: %TX"
     //% weight=89
@@ -71,7 +70,7 @@ namespace MP3 {
     }
 
     /**
-     * TODO: describe your function here
+     * TODO: Use the block to play a mp3 file in the folder 01/ in microSD card.
      * @param value describe value here, eg: 5
      */
         //% blockId=mp3_play block="Play MP3 file %RX| in folder /01"
