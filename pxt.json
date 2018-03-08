@@ -1,5 +1,5 @@
 {
-    "name": "DS3231",
+    "name": "MP3",
     "version": "0.1.0",
     "description": "Package for Catalex serial MP3 module developed by Jack Ho",
     "license": "MIT",
