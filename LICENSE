@@ -1,8 +1,8 @@
-# DS3231
-A Microsoft MakeCode package for for DS3231 module.
+# MP3
+A Microsoft MakeCode package for for Catalex serial MP3 module.
 
 ## Basic usage
-Use the block to get current time or date.
+Use the block to play mp3 files.
 
 ## License
 
