@@ -1,8 +1,8 @@
 # MP3
-A Microsoft MakeCode package for for Catalex serial MP3 module.
+A Microsoft MakeCode package for servo controlling module
 
 ## Basic usage
-Use the block to play mp3 files.
+Use the block to control the servo controlling module
 
 ## License
 
