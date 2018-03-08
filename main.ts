@@ -1,123 +1,95 @@
 /*
 Copyright 2018 Jack Ho, Parco Choi, Sang Lo (MCEHK)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
+associated documentation files (the "Software"), to deal in the Software without restriction, 
+including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies
+or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE 
+AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
-let ss = 0
-let mm = 0
-let hh = 0
-let dd = 0
-let mth = 0
-let yyyy = 0
-let buf = pins.createBuffer(7)
-let value = 0
+let buf = pins.createBuffer(8)
 
 enum MyEnum {
-    //% block="Second"
-    Second,
-    //% block="Minute"
-    Minute,
-    //% block="Hour"
-    Hour,
-    //% block="Day"
-    Day,
-    //% block="Month"
-    Month,
-    //% block="Year"
-    Year
+    //% block="001001.mp3"
+    One = 1,
+    //% block="002002.mp3"
+    Two = 2,
+    //% block="003003.mp3"
+    Three = 3,
+    //% block="004004.mp3"
+    Four = 4,
+     //% block="005005.mp3"
+    Five = 5,
+     //% block="006006.mp3"
+    Six = 6,
+    //% block="007007.mp3"
+    Seven = 7,
+    //% block="008008.mp3"
+    Eight = 8
+
 }
 
-//% color="#31C7D5" weight=10 icon="\uf192"
-namespace DS3231 {
+/**
+ * Custom blocks
+ */
+//% weight=5 color=#2699BF icon="\uf110"
+namespace MP3 {
     /**
-     * Get the current time / date
-     * @param Get the day / month / hour / minute / second 
-     * 
+     * TODO: describe your function here
+     * @param n describe parameter here, eg: 5
+     * @param s describe parameter here, eg: "Hello"
+     * @param e describe parameter here
      */
-    //% blockId=realtimeclock block="Get|current %e"
-    //% weight=87
-    export function GetDayTime(e: MyEnum): number {
+       //% blockId=mp3_init block="Initialise MP3 module |RX: %RX| TX: %TX"
+    //% weight=89
+    export function InitialiseMP3(RX: SerialPin, TX: SerialPin): void {
+        // Add code here
+        buf.setNumber(NumberFormat.UInt8LE, 0, 0x7e)
+        buf.setNumber(NumberFormat.UInt8LE, 1, 0xff)
+        buf.setNumber(NumberFormat.UInt8LE, 2, 0x06)
+        buf.setNumber(NumberFormat.UInt8LE, 3, 0x09)
+        buf.setNumber(NumberFormat.UInt8LE, 4, 0x01)
+        buf.setNumber(NumberFormat.UInt8LE, 5, 0x00)
+        buf.setNumber(NumberFormat.UInt8LE, 6, 0x02)
+        buf.setNumber(NumberFormat.UInt8LE, 7, 0xef)
+        serial.redirect(
+            RX,
+            TX,
+            BaudRate.BaudRate9600
+        )
+        serial.writeBuffer(buf)
 
-        if (e == 0) {
-            pins.i2cWriteNumber(
-                104,
-                0,
-                NumberFormat.UInt8LE,
-                false
-            )
-            buf = pins.i2cReadBuffer(0x68, 7, false)
-            ss = buf.getNumber(NumberFormat.UInt8LE, 0)
-            value = ((ss & 0xf0) >> 4) * 10 + (ss & 0x0f)
-        }
-        if (e == 1) {
-            pins.i2cWriteNumber(
-                104,
-                0,
-                NumberFormat.UInt8LE,
-                false
-            )
-            buf = pins.i2cReadBuffer(0x68, 7, false)
-            mm = buf.getNumber(NumberFormat.UInt8LE, 1)
-            value = ((mm & 0xf0) >> 4) * 10 + (mm & 0x0f)
-        }
-        if (e == 2) {
-            pins.i2cWriteNumber(
-                104,
-                0,
-                NumberFormat.UInt8LE,
-                false
-            )
-            buf = pins.i2cReadBuffer(0x68, 7, false)
-            hh = buf.getNumber(NumberFormat.UInt8LE, 2)
-            if (hh & 0x40) {
-                value = (((hh & 0x1f) & 0xf0) >> 4) * 10 + ((hh & 0x1f) & 0x0f)
-                if (hh & 0x20)
-                { value = value + 12 }
-            }
-            else
-            { value = ((hh & 0xf0) >> 4) * 10 + (hh & 0x0f) }
-        }
+    }
 
-        if (e == 3) {
-            pins.i2cWriteNumber(
-                104,
-                0,
-                NumberFormat.UInt8LE,
-                false
-            )
-            buf = pins.i2cReadBuffer(0x68, 7, false)
-            dd = buf.getNumber(NumberFormat.UInt8LE, 4)
-            value = ((dd & 0xf0) >> 4) * 10 + (dd & 0x0f)
-        }
+    /**
+     * TODO: describe your function here
+     * @param value describe value here, eg: 5
+     */
+        //% blockId=mp3_play block="Play MP3 file %RX| in folder /01"
+    //% weight=89
 
-        if (e == 4) {
-            pins.i2cWriteNumber(
-                104,
-                0,
-                NumberFormat.UInt8LE,
-                false
-            )
-            buf = pins.i2cReadBuffer(0x68, 7, false)
-            mth = buf.getNumber(NumberFormat.UInt8LE, 5)
-            value = (((mth & 0x1f) & 0xf0) >> 4) * 10 + ((mth & 0x1f) & 0x0f)
-        }
-
-        if (e == 5) {
-            pins.i2cWriteNumber(
-                104,
-                0,
-                NumberFormat.UInt8LE,
-                false
-            )
-            buf = pins.i2cReadBuffer(0x68, 7, false)
-            yyyy = buf.getNumber(NumberFormat.UInt8LE, 6)
-            value = ((yyyy & 0xf0) >> 4) * 10 + (yyyy & 0x0f) + 2000
-        }
-
-        return value
+    export function PlayMP3(value: MyEnum) {
+        buf.setNumber(NumberFormat.UInt8LE, 0, 0x7e)
+        buf.setNumber(NumberFormat.UInt8LE, 1, 0xff)
+        buf.setNumber(NumberFormat.UInt8LE, 2, 0x06)
+        buf.setNumber(NumberFormat.UInt8LE, 3, 0x0f)
+        buf.setNumber(NumberFormat.UInt8LE, 4, 0x00)
+        buf.setNumber(NumberFormat.UInt8LE, 5, 0x01)
+        buf.setNumber(NumberFormat.UInt8LE, 6, value)
+        buf.setNumber(NumberFormat.UInt8LE, 7, 0xef)
+        serial.writeBuffer(buf)
     }
 }
+
+serial.onDataReceived(serial.delimiters(Delimiters.NewLine), () => {
+    basic.showString(serial.readLine())
+})
