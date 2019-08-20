@@ -1,7 +1,7 @@
 {
-    "name": "ServoDriver",
+    "name": "RoboticArm",
     "version": "0.1.0",
-    "description": "Package for Servo controlling modukle",
+    "description": "Package for Robotic Arm",
     "license": "MIT",
     "dependencies": {
         "core": "*"
