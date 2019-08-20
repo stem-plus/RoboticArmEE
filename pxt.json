@@ -1,6 +1,6 @@
 {
     "name": "RoboticArm",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Package for Robotic Arm",
     "license": "MIT",
     "dependencies": {
