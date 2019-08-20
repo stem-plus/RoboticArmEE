@@ -21,13 +21,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
 
 //% color="#ff7300" weight=10 icon="\uf110"
-namespace ServoDriver {
+namespace RoboticArm {
     const PCA9685_ADDRESS = 0x40
     const MODE1 = 0x00
     const LED0_ON_L = 0x06
     const PRESCALE = 0xFE
 
     let initialized = false
+
 
     export enum Servos {
         C0 = 0x00,
@@ -103,7 +104,7 @@ namespace ServoDriver {
         pins.i2cWriteBuffer(PCA9685_ADDRESS, buf);
     }
 
-    //% blockId=Servo_Driver block="servo write pin |%index| to %degree"
+    //% blockId=Servo_Driver block="連接到引腳|%index|的舵機角度設為|%degree|"
     //% weight=100
     //% blockGap=50
     //% degree.min=0 degree.max=180
@@ -117,4 +118,54 @@ namespace ServoDriver {
         let value = v_us * 4096 / 20000
         setPwm(index, 0, value)
     }
+
+    //% blockId=vsangle block="按照讀數 |%vsreading| 計算直軸舵機角度 最小|%vsminangle| 最大|%vsmaxangle| "
+    //% weight=100
+    //% blockGap=50
+    //% vsmaxangle.min=0 vsmaxangle.max=180
+    //% vsminangle.min=0 vsminangle.max=180
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=8
+    export function VerticalShaft(vsreading: number, vsminangle: number, vsmaxangle: number): number {
+        return pins.map(
+            vsreading,
+            0,
+            1020,
+            vsminangle,
+            vsmaxangle
+        )
+    }
+
+    //% blockId=hzangle block="按照讀數|%hzreading|及直軸舵機角度|%vsservoangle|角度A最小|%hzminangle|最大|%hzmaxangle|計算橫軸舵機角度"
+    //% weight=100
+    //% blockGap=50
+    //% hzmaxangle.min=0 hzsmaxangle.max=180
+    //% hzminangle.min=0 hzminangle.max=180
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=8
+    export function HorizontalShaft(hzreading: number, vsservoangle: number, hzminangle: number, hzmaxangle: number): number {
+        return pins.map(hzreading,
+            0,
+            1020,
+            hzminangle - vsservoangle + 90,
+            hzmaxangle - vsservoangle + 90
+        )
+
+    }
+
+    //% blockId=bsangle block="按照讀數|%bsreading|計算基座角度 最小|%bsminangle|最大|%bsmaxangle| "
+    //% weight=100
+    //% blockGap=50
+    //% bsmaxangle.min=0 bsmaxangle.max=180
+    //% bsminangle.min=0 bsminangle.max=180
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=8
+    export function BaseAngle(bsreading: number, bsminangle: number, bsmaxangle: number): number {
+        return pins.map(
+            bsreading,
+            0,
+            1020,
+            bsminangle,
+            bsmaxangle
+        )
+    }
+
+
 }
