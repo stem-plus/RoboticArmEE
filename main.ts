@@ -104,7 +104,7 @@ namespace RoboticArm {
         pins.i2cWriteBuffer(PCA9685_ADDRESS, buf);
     }
 
-    //% blockId=Servo_Driver block="連接到引腳|%index|的舵機角度設為|%degree|"
+    //% blockId=Servo_Driver block="连接到引脚|%index|的舵机角度设为|%degree|"
     //% weight=100
     //% blockGap=50
     //% degree.min=0 degree.max=180
@@ -119,7 +119,7 @@ namespace RoboticArm {
         setPwm(index, 0, value)
     }
 
-    //% blockId=vsangle block="按照讀數 |%vsreading| 計算直軸舵機角度 最小|%vsminangle| 最大|%vsmaxangle| "
+    //% blockId=vsangle block="按照读数 |%vsreading| 计算直轴舵机角度 最小|%vsminangle| 最大|%vsmaxangle| "
     //% weight=100
     //% blockGap=50
     //% vsmaxangle.min=0 vsmaxangle.max=180
@@ -135,7 +135,7 @@ namespace RoboticArm {
         )
     }
 
-    //% blockId=hzangle block="按照讀數|%hzreading|及直軸舵機角度|%vsservoangle|角度A最小|%hzminangle|最大|%hzmaxangle|計算橫軸舵機角度"
+    //% blockId=hzangle block="按照读数|%hzreading|及直轴舵机角度|%vsservoangle|角度A最小|%hzminangle|最大|%hzmaxangle|计算横轴舵机角度"
     //% weight=100
     //% blockGap=50
     //% hzmaxangle.min=0 hzsmaxangle.max=180
@@ -151,7 +151,7 @@ namespace RoboticArm {
 
     }
 
-    //% blockId=bsangle block="按照讀數|%bsreading|計算基座角度 最小|%bsminangle|最大|%bsmaxangle| "
+    //% blockId=bsangle block="按照读数|%bsreading|计算基座角度 最小|%bsminangle|最大|%bsmaxangle| "
     //% weight=100
     //% blockGap=50
     //% bsmaxangle.min=0 bsmaxangle.max=180
