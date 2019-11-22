@@ -119,7 +119,7 @@ namespace RoboticArm {
         setPwm(index, 0, value)
     }
 
-    //% blockId=vsangle block="按照读数 |%vsreading| 计算直轴舵机角度 最小|%vsminangle| 最大|%vsmaxangle| "
+    //% blockId=vsangle block="Calculate the angle of the servo motor on the vertical axis of minimal value |%vsminangle| and maximal value |%vsmaxangle| according to the reading |%vsreading|"
     //% weight=100
     //% blockGap=50
     //% vsmaxangle.min=0 vsmaxangle.max=180
@@ -135,7 +135,7 @@ namespace RoboticArm {
         )
     }
 
-    //% blockId=hzangle block="按照读数|%hzreading|及直轴舵机角度|%vsservoangle|角度A最小|%hzminangle|最大|%hzmaxangle|计算横轴舵机角度"
+    //% blockId=hzangle block="Calculate the angle of the steering engine on the horizontal axis according to the reading |%hzreading| and the angle of the steering engine on the vertical axis |%vsservoangle| with angle A of the minimal value |%hzminangle| and the maximal value |%hzmaxangle|"
     //% weight=100
     //% blockGap=50
     //% hzmaxangle.min=0 hzsmaxangle.max=180
