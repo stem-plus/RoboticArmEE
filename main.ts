@@ -104,7 +104,7 @@ namespace RoboticArm {
         pins.i2cWriteBuffer(PCA9685_ADDRESS, buf);
     }
 
-    //% blockId=Servo_Driver block="连接到引脚|%index|的舵机角度设为|%degree|"
+    //% blockId=Servo_Driver block="Set the angle of the servo motor connecting to the pin |%index| to |%degree|"
     //% weight=100
     //% blockGap=50
     //% degree.min=0 degree.max=180
@@ -151,7 +151,7 @@ namespace RoboticArm {
 
     }
 
-    //% blockId=bsangle block="按照读数|%bsreading|计算基座角度 最小|%bsminangle|最大|%bsmaxangle| "
+    //% blockId=bsangle block="Calculate the angle of the base of minimal value |%bsminangle| and maximal value |%bsmaxangle| according to the reading |%bsreading|"
     //% weight=100
     //% blockGap=50
     //% bsmaxangle.min=0 bsmaxangle.max=180
