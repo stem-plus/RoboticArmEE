@@ -151,7 +151,7 @@ namespace RoboticArm {
 
     }
 
-    //% blockId=bsangle block="Calculate the angle of the base with minimal value |%bsminangle| and maximal value |%bsmaxangle| according to the reading |%bsreading|"
+    //% blockId=bsangle block="Calculate the angle of the base of minimal value |%bsminangle| and maximal value |%bsmaxangle| according to the reading |%bsreading|"
     //% weight=100
     //% blockGap=50
     //% bsmaxangle.min=0 bsmaxangle.max=180
