@@ -119,7 +119,7 @@ namespace RoboticArm {
         setPwm(index, 0, value)
     }
 
-    //% blockId=vsangle block="Calculate the angle of the servo motor on the vertical axis of minimal value \n |%vsminangle| and maximal value |%vsmaxangle| according to the reading |%vsreading|"
+    //% blockId=vsangle block="Calculate the angle of the servo motor on the vertical axis of minimal value |%vsminangle| and maximal value |%vsmaxangle| according to the reading |%vsreading|"
     //% weight=100
     //% blockGap=50
     //% vsmaxangle.min=0 vsmaxangle.max=180
