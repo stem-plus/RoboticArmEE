@@ -119,7 +119,7 @@ namespace RoboticArm {
         setPwm(index, 0, value)
     }
 
-    //% blockId=vsangle block="Calculate the angle of the servo motor on the vertical axis of minimal value |%vsminangle| and maximal value |%vsmaxangle| according to the reading |%vsreading|"
+    //% blockId=vsangle block="Calculate the angle of the servo motor on the vertical bar of minimal value |%vsminangle| and maximal value |%vsmaxangle| according to the reading |%vsreading|"
     //% weight=100
     //% blockGap=50
     //% vsmaxangle.min=0 vsmaxangle.max=180
@@ -135,7 +135,7 @@ namespace RoboticArm {
         )
     }
 
-    //% blockId=hzangle block="Calculate the angle of the servo motor on the horizontal axis according to the reading |%hzreading| and the angle of the servo motor on the vertical axis |%vsservoangle| with angle A of the minimal value |%hzminangle| and the maximal value |%hzmaxangle|"
+    //% blockId=hzangle block="Calculate the angle of the servo motor on the horizontal bar according to the reading |%hzreading| and the angle of the servo motor on the vertical axis |%vsservoangle| with angle A of the minimal value |%hzminangle| and the maximal value |%hzmaxangle|"
     //% weight=100
     //% blockGap=50
     //% hzmaxangle.min=0 hzsmaxangle.max=180
